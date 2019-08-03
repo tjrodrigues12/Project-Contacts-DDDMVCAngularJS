@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "MyProject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.LoadScripts = Scripts.Render("~/bundles/contact");
+}
+
+<div ng-controller="indexCtrl">
+    <h2>{{pageTitle}}</h2>
+    <div class="form-group">
+        <label>Search:</label>
+        <input ng-model="textSearch" id="textSearch" type="text" class="form-inline" style="width:30%" />
+        <button ng-click="changeContacts('ALL', textSearch)" class="btn">Find</button>
+        <button ng-click="clearSearch()" class="btn">Clear</button>
+    </div>
+    <div style="margin-bottom: 6px;"></div>
+    <div class="btn-group" ng-repeat="letter in letters">
+        <button type="button" class="btn" ng-class="{'btn-info': letter.isActive}" ng-click="changeContacts(letter, '')">{{ letter.letter }}</button>&nbsp;
+    </div>
+    <div style="margin-bottom: 6px;"></div>
+    <div ui-grid="grid" class="grid" ui-grid-pagination></div>
+</div>
+
+
